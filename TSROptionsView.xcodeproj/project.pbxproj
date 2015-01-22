@@ -1,0 +1,291 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9A31935D1A7084A500CA03AA /* TSROptionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A3193561A7084A500CA03AA /* TSROptionsView.m */; };
+		9A31935E1A7084A500CA03AA /* TSROptionsViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A3193581A7084A500CA03AA /* TSROptionsViewCell.m */; };
+		9A31935F1A7084A500CA03AA /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A31935A1A7084A500CA03AA /* UIImage+ImageEffects.m */; };
+		9A3193601A7084A500CA03AA /* UIViewController+TSROptionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A31935C1A7084A500CA03AA /* UIViewController+TSROptionsView.m */; };
+		9A3193641A7084E600CA03AA /* UIViewController+TSROptionsView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A31935B1A7084A500CA03AA /* UIViewController+TSROptionsView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9A3193651A7084E600CA03AA /* TSROptionsView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3193551A7084A500CA03AA /* TSROptionsView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9A3193661A7084E600CA03AA /* TSROptionsViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3193571A7084A500CA03AA /* TSROptionsViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9A3193671A7084EC00CA03AA /* UIImage+ImageEffects.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3193591A7084A500CA03AA /* UIImage+ImageEffects.h */; settings = {ATTRIBUTES = (Private, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9A3193391A70844B00CA03AA /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		9A31933B1A70844B00CA03AA /* libTSROptionsView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTSROptionsView.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A3193551A7084A500CA03AA /* TSROptionsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSROptionsView.h; path = Source/TSROptionsView.h; sourceTree = "<group>"; };
+		9A3193561A7084A500CA03AA /* TSROptionsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSROptionsView.m; path = Source/TSROptionsView.m; sourceTree = "<group>"; };
+		9A3193571A7084A500CA03AA /* TSROptionsViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSROptionsViewCell.h; path = Source/TSROptionsViewCell.h; sourceTree = "<group>"; };
+		9A3193581A7084A500CA03AA /* TSROptionsViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSROptionsViewCell.m; path = Source/TSROptionsViewCell.m; sourceTree = "<group>"; };
+		9A3193591A7084A500CA03AA /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+ImageEffects.h"; path = "Source/UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		9A31935A1A7084A500CA03AA /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+ImageEffects.m"; path = "Source/UIImage+ImageEffects.m"; sourceTree = "<group>"; };
+		9A31935B1A7084A500CA03AA /* UIViewController+TSROptionsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+TSROptionsView.h"; path = "Source/UIViewController+TSROptionsView.h"; sourceTree = "<group>"; };
+		9A31935C1A7084A500CA03AA /* UIViewController+TSROptionsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+TSROptionsView.m"; path = "Source/UIViewController+TSROptionsView.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9A3193381A70844B00CA03AA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9A3193321A70844B00CA03AA = {
+			isa = PBXGroup;
+			children = (
+				9A31933D1A70844B00CA03AA /* TSROptionsView */,
+				9A31933C1A70844B00CA03AA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9A31933C1A70844B00CA03AA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A31933B1A70844B00CA03AA /* libTSROptionsView.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9A31933D1A70844B00CA03AA /* TSROptionsView */ = {
+			isa = PBXGroup;
+			children = (
+				9A3193611A7084A800CA03AA /* Categories */,
+				9A3193551A7084A500CA03AA /* TSROptionsView.h */,
+				9A3193561A7084A500CA03AA /* TSROptionsView.m */,
+				9A3193571A7084A500CA03AA /* TSROptionsViewCell.h */,
+				9A3193581A7084A500CA03AA /* TSROptionsViewCell.m */,
+			);
+			path = TSROptionsView;
+			sourceTree = "<group>";
+		};
+		9A3193611A7084A800CA03AA /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				9A3193591A7084A500CA03AA /* UIImage+ImageEffects.h */,
+				9A31935A1A7084A500CA03AA /* UIImage+ImageEffects.m */,
+				9A31935B1A7084A500CA03AA /* UIViewController+TSROptionsView.h */,
+				9A31935C1A7084A500CA03AA /* UIViewController+TSROptionsView.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		9A3193631A7084DE00CA03AA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A3193641A7084E600CA03AA /* UIViewController+TSROptionsView.h in Headers */,
+				9A3193651A7084E600CA03AA /* TSROptionsView.h in Headers */,
+				9A3193661A7084E600CA03AA /* TSROptionsViewCell.h in Headers */,
+				9A3193671A7084EC00CA03AA /* UIImage+ImageEffects.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		9A31933A1A70844B00CA03AA /* TSROptionsView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9A31934F1A70844B00CA03AA /* Build configuration list for PBXNativeTarget "TSROptionsView" */;
+			buildPhases = (
+				9A3193371A70844B00CA03AA /* Sources */,
+				9A3193381A70844B00CA03AA /* Frameworks */,
+				9A3193391A70844B00CA03AA /* CopyFiles */,
+				9A3193631A7084DE00CA03AA /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TSROptionsView;
+			productName = TSROptionsView;
+			productReference = 9A31933B1A70844B00CA03AA /* libTSROptionsView.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9A3193331A70844B00CA03AA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = Tonsser;
+				TargetAttributes = {
+					9A31933A1A70844B00CA03AA = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+				};
+			};
+			buildConfigurationList = 9A3193361A70844B00CA03AA /* Build configuration list for PBXProject "TSROptionsView" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 9A3193321A70844B00CA03AA;
+			productRefGroup = 9A31933C1A70844B00CA03AA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9A31933A1A70844B00CA03AA /* TSROptionsView */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9A3193371A70844B00CA03AA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A3193601A7084A500CA03AA /* UIViewController+TSROptionsView.m in Sources */,
+				9A31935D1A7084A500CA03AA /* TSROptionsView.m in Sources */,
+				9A31935E1A7084A500CA03AA /* TSROptionsViewCell.m in Sources */,
+				9A31935F1A7084A500CA03AA /* UIImage+ImageEffects.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		9A31934D1A70844B00CA03AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		9A31934E1A70844B00CA03AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9A3193501A70844B00CA03AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		9A3193511A70844B00CA03AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9A3193361A70844B00CA03AA /* Build configuration list for PBXProject "TSROptionsView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9A31934D1A70844B00CA03AA /* Debug */,
+				9A31934E1A70844B00CA03AA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9A31934F1A70844B00CA03AA /* Build configuration list for PBXNativeTarget "TSROptionsView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9A3193501A70844B00CA03AA /* Debug */,
+				9A3193511A70844B00CA03AA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9A3193331A70844B00CA03AA /* Project object */;
+}
