@@ -30,6 +30,8 @@
     
     optionsView.tintColor = self.previewView.backgroundColor;
     
+    [optionsView addOptionWithTitle:@"Pre-selected item a a a a a a a a a a a a a" icon:nil selected:YES];
+    
     [self presentOptionsView:optionsView];
 }
 

@@ -12,7 +12,7 @@ extern NSString *TSROptionsViewCellIdentifier;
 
 @interface TSROptionsViewCell : UITableViewCell
 
-+ (CGFloat)heightWithText:(NSString *)text withImage:(UIImage *)image usingFont:(UIFont *)font maintainingWidth:(CGFloat)width;
++ (CGFloat)heightWithText:(NSString *)text withImage:(UIImage *)image selected:(BOOL)selected usingFont:(UIFont *)font maintainingWidth:(CGFloat)width;
 
 @property(nonatomic, readwrite) BOOL showsSeparator;
 @end

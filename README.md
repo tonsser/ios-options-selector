@@ -42,6 +42,7 @@ We'll publish it to the CocoaPods repo once we feel it's stable enough for produ
 
 - (void)addOptionWithTitle:(NSString *)title;
 - (void)addOptionWithTitle:(NSString *)title icon:(UIImage *)icon;
+- (void)addOptionWithTitle:(NSString *)title icon:(UIImage *)icon selected:(BOOL)selected;
 
 - (NSString *)titleForButtonWithIndex:(NSInteger)index;
 ```
@@ -59,6 +60,16 @@ We'll publish it to the CocoaPods repo once we feel it's stable enough for produ
     <td>tintColor</td>
     <td><code>UIColor*</code></td>
     <td>Set or get the tint color.</td>
+  </tr>
+  <tr>
+    <td>textColor</td>
+    <td><code>UIColor*</code></td>
+    <td>Set or get the text color.</td>
+  </tr>
+  <tr>
+    <td>checkmarkColor</td>
+    <td><code>UIColor*</code></td>
+    <td>Set or get the checkmark color.</td>
   </tr>
   <tr>
     <td>titleFont</td>

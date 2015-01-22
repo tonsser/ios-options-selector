@@ -19,12 +19,13 @@
 
 - (void)addOptionWithTitle:(NSString *)title;
 - (void)addOptionWithTitle:(NSString *)title icon:(UIImage *)icon;
+- (void)addOptionWithTitle:(NSString *)title icon:(UIImage *)icon selected:(BOOL)selected;
 
 - (NSString *)titleForButtonWithIndex:(NSInteger)index;
 
 @property(nonatomic, weak) id<TSROptionsViewDelegate> delegate;
 @property(nonatomic, readwrite) NSString *cancelButtonTitle;
-@property(nonatomic, strong) UIColor *tintColor;
+@property(nonatomic, strong) UIColor *textColor, *tintColor, *checkmarkColor;
 @property(nonatomic, strong) UIFont *titleFont;
 @property(nonatomic, strong) UIFont *choicesFont;
 @property(nonatomic, assign) CGFloat tintColorAlphaModifier;

@@ -17,6 +17,7 @@
 @interface TSROptionsViewOption : NSObject
 @property(nonatomic, strong) NSString *title;
 @property(nonatomic, strong) UIImage *icon;
+@property(nonatomic, assign) BOOL selected;
 @end
 
 @implementation TSROptionsViewOption
@@ -38,11 +39,11 @@
 @property(nonatomic, strong) CAGradientLayer *gradientTop, *gradientBottom;
 @property(nonatomic, strong) UIImageView *snapshotImageView, *blurredImageView;
 
-@property(nonatomic, strong) UIColor *textColor;
+@property(nonatomic, strong) UIColor *textColorFromTint;
 @end
 
 @implementation TSROptionsView
-@synthesize snapshotImage = _snapshotImage;
+@synthesize snapshotImage = _snapshotImage, textColor = _textColor;
 
 + (TSROptionsView *)withTitle:(NSString *)title delegate:(id<TSROptionsViewDelegate>)delegate cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSString *)otherButtonTitles, ... {
     TSROptionsView *result = [[TSROptionsView alloc] init];
@@ -285,6 +286,11 @@
             cell.textLabel.font  = self.choicesFont;
             cell.showsSeparator  = YES;
             
+            if (option.selected) {
+                cell.tintColor     = self.checkmarkColor;
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            }
+            
             break;
         }
     }
@@ -311,13 +317,13 @@
     
     switch (indexPath.section) {
         case 0: {
-            return [TSROptionsViewCell heightWithText:self.title withImage:nil usingFont:self.titleFont maintainingWidth:width];
+            return [TSROptionsViewCell heightWithText:self.title withImage:nil selected:NO usingFont:self.titleFont maintainingWidth:width];
         }
             
         default: {
             TSROptionsViewOption *option = self.options[indexPath.row];
             
-            return [TSROptionsViewCell heightWithText:option.title withImage:option.icon usingFont:self.choicesFont maintainingWidth:width];
+            return [TSROptionsViewCell heightWithText:option.title withImage:option.icon selected:option.selected usingFont:self.choicesFont maintainingWidth:width];
         }
     }
 }
@@ -359,22 +365,25 @@
 #pragma mark - Public methods
 
 - (void)addOptionWithTitle:(NSString *)title {
-    TSROptionsViewOption* option = [TSROptionsViewOption new];
-    
-    option.title = title;
-    
-    [self.options addObject:option];
-    [self reloadData];
+    [self addOptionWithTitle:title icon:nil selected:NO];
 }
 
 - (void)addOptionWithTitle:(NSString *)title icon:(UIImage *)icon {
+    [self addOptionWithTitle:title icon:icon selected:NO];
+}
+
+- (void)addOptionWithTitle:(NSString *)title icon:(UIImage *)icon selected:(BOOL)selected {
     TSROptionsViewOption* option = [TSROptionsViewOption new];
     
-    option.title = title;
-    option.icon  = icon;
+    option.title    = title;
+    option.icon     = icon;
+    option.selected = selected;
     
     [self.options addObject:option];
-    [self reloadData];
+    
+    if (self.isVisible) {
+        [self reloadData];
+    }
 }
 
 - (NSString *)titleForButtonWithIndex:(NSInteger)index {
@@ -406,9 +415,9 @@
     BOOL isDarkColor = sqrt((r * r * 0.241) + (g * g * 0.691) + (b * b * 0.068)) < 0.42;
     
     if (isDarkColor) {
-        self.textColor = [UIColor whiteColor];
+        self.textColorFromTint = [UIColor whiteColor];
     } else {
-        self.textColor = [UIColor blackColor];
+        self.textColorFromTint = [UIColor blackColor];
     }
     
     _tintColor = tintColor;
@@ -495,6 +504,27 @@
                                                     saturationDeltaFactor:1.8f
                                                                 maskImage:nil];
     }
+}
+
+- (UIColor *)checkmarkColor {
+    if (!_checkmarkColor) {
+        return self.textColor;
+    } else {
+        return _checkmarkColor;
+    }
+}
+
+- (UIColor *)textColor {
+    if (!_textColor) {
+        return self.textColorFromTint;
+    } else {
+        return _textColor;
+    }
+}
+
+- (void)setTextColor:(UIColor *)textColor {
+    _textColor = textColor;
+    self.tintColor = self.tintColor;
 }
 
 @end

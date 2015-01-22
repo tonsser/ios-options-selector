@@ -20,7 +20,7 @@ static CGFloat TSROptionsViewCellImageSpacing = 10.f;
 
 @implementation TSROptionsViewCell
 
-+ (CGFloat)heightWithText:(NSString *)text withImage:(UIImage *)image usingFont:(UIFont *)font maintainingWidth:(CGFloat)width {
++ (CGFloat)heightWithText:(NSString *)text withImage:(UIImage *)image selected:(BOOL)selected usingFont:(UIFont *)font maintainingWidth:(CGFloat)width {
     if (!font) {
         font = [UIFont systemFontOfSize:17.f];
     }
@@ -29,7 +29,7 @@ static CGFloat TSROptionsViewCellImageSpacing = 10.f;
         text = @"";
     }
     
-    CGFloat height = [text boundingRectWithSize:CGSizeMake(width - TSROptionsViewCellSidePadding * 2 - ((image != nil) ? TSROptionsViewCellImageSpacing : 0.f), CGFLOAT_MAX)
+    CGFloat height = [text boundingRectWithSize:CGSizeMake(width - TSROptionsViewCellSidePadding * 2 - ((image != nil) ? TSROptionsViewCellImageSpacing : 0.f) - ((selected) ? 44.f : 0.f), CGFLOAT_MAX)
                                         options:NSStringDrawingUsesLineFragmentOrigin
                                      attributes:@{NSFontAttributeName: font}
                                         context:nil].size.height + TSROptionsViewCellSidePadding * 2 /* 2x 8px padding */;
@@ -77,7 +77,7 @@ static CGFloat TSROptionsViewCellImageSpacing = 10.f;
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    CGRect labelRect = CGRectInset(self.bounds, TSROptionsViewCellSidePadding, 0.f);
+    CGRect labelRect = CGRectInset(self.contentView.bounds, TSROptionsViewCellSidePadding, 0.f);
     
     self.imageView.hidden = !self.imageView.image;
     
