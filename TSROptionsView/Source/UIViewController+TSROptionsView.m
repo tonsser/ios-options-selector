@@ -34,7 +34,7 @@
 }
 
 - (void)presentOptionsView:(TSROptionsView *)optionsView {
-    UIWindow *window = [[[UIApplication sharedApplication] windows] firstObject];
+    UIWindow *window = [[[UIApplication sharedApplication] windows] lastObject];
     
     if (window) {
         UIGraphicsBeginImageContextWithOptions(window.rootViewController.view.frame.size, NO, window.screen.scale); {
@@ -71,7 +71,7 @@
 
 - (void)dismissOptionsView {
     TSROptionsView *optionsView = self.presentingOptionsView;
-    UIWindow *window            = [[[UIApplication sharedApplication] windows] firstObject];
+    UIWindow *window            = [[[UIApplication sharedApplication] windows] lastObject];
     
     if (window && optionsView) {
         self.presentingOptionsView = nil;
