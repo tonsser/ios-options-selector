@@ -29,6 +29,9 @@
     TSROptionsView *optionsView = [TSROptionsView withTitle:@"Will it blend?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes", @"No", @"Maybe", nil];
     
     optionsView.tintColor = self.previewView.backgroundColor;
+    optionsView.animationDuration     = .20f;
+    optionsView.animationDelay        = .15f;
+    optionsView.startOffsetPercentage = 0.f;
     
     [optionsView addOptionWithTitle:@"Pre-selected item a a a a a a a a a a a a a" icon:nil selected:YES];
     

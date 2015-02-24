@@ -28,7 +28,7 @@
 @property(nonatomic, strong) UIColor *textColor, *tintColor, *checkmarkColor;
 @property(nonatomic, strong) UIFont *titleFont;
 @property(nonatomic, strong) UIFont *choicesFont;
-@property(nonatomic, assign) CGFloat tintColorAlphaModifier;
+@property(nonatomic, assign) CGFloat tintColorAlphaModifier, animationDuration, animationDelay, startOffsetPercentage;
 @end
 
 @protocol TSROptionsViewDelegate <NSObject>

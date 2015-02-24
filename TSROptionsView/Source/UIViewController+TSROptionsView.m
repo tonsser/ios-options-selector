@@ -57,11 +57,13 @@
         
         [optionsView viewWillAppear:YES];
         
-        [UIView animateWithDuration:.5f animations:^{
+        CGFloat duration = optionsView.animationDuration, delay = optionsView.animationDelay;
+        
+        [UIView animateWithDuration:duration*1.4f animations:^{
             optionsView.view.alpha = 1.f;
         }];
         
-        [UIView animateWithDuration:.5f delay:.2f options:UIViewAnimationOptionShowHideTransitionViews animations:^{
+        [UIView animateWithDuration:duration*1.4f delay:delay*2.f options:UIViewAnimationOptionShowHideTransitionViews animations:^{
             optionsView.contentView.frame = CGRectMake(0, 0, width, height);
         } completion:^(BOOL finished) {
             [optionsView viewDidAppear:YES];
@@ -84,11 +86,13 @@
         
         [optionsView viewWillDisappear:YES];
         
-        [UIView animateWithDuration:.35f animations:^{
+        CGFloat duration = optionsView.animationDuration, delay = optionsView.animationDelay;
+        
+        [UIView animateWithDuration:duration animations:^{
             optionsView.view.alpha = 0.f;
         }];
         
-        [UIView animateWithDuration:.35f delay:.1f options:UIViewAnimationOptionShowHideTransitionViews animations:^{
+        [UIView animateWithDuration:duration delay:delay options:UIViewAnimationOptionShowHideTransitionViews animations:^{
             optionsView.contentView.frame = CGRectMake(0, height, width, 0);
         } completion:^(BOOL finished) {
             [optionsView.view removeFromSuperview];

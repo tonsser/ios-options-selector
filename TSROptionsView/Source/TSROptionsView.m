@@ -94,6 +94,11 @@
     self.didConfigure = YES;
     self.isVisible    = NO;
     
+    self.animationDuration = .35f;
+    self.animationDelay    = .1f;
+    
+    self.startOffsetPercentage = .5f;
+    
     self.gradientTop = [CAGradientLayer layer];
     self.gradientTop.locations = @[[NSNumber numberWithFloat:.3f], [NSNumber numberWithFloat:1.f]];
     
@@ -181,7 +186,7 @@
     
     [self reloadData];
     
-    self.tableView.contentInset  = UIEdgeInsetsMake(CGRectGetHeight(self.view.bounds) * 0.5, 0, 50, 0);
+    self.tableView.contentInset  = UIEdgeInsetsMake(CGRectGetHeight(self.view.bounds) * self.startOffsetPercentage, 0, 50, 0);
     self.tableView.contentOffset = CGPointMake(0, -self.tableView.contentInset.top);
     
     if (self.delegate && [self.delegate respondsToSelector:@selector(willPresentOptionsView:)]) {
@@ -220,7 +225,7 @@
     
     self.cancelButton.frame = CGRectMake(0, height - 50.f, width, 50.f);
     
-    self.tableView.contentInset  = UIEdgeInsetsMake(height * 0.5, 0, ((self.cancelButton.hidden) ? 50.f : 100.f), 0);
+    self.tableView.contentInset  = UIEdgeInsetsMake(height * self.startOffsetPercentage, 0, ((self.cancelButton.hidden) ? 50.f : 100.f), 0);
     
     self.gradientTop.frame       = CGRectMake(0, 0, width, 50.f);
     self.gradientBottom.frame    = CGRectMake(0, height - ((self.cancelButton.hidden) ? 50.f : 100.f), width, 50.f);
@@ -402,6 +407,18 @@
 }
 
 #pragma mark - Properties
+
+- (void)setStartOffsetPercentage:(CGFloat)startOffsetPercentage {
+    if (startOffsetPercentage < .1f) {
+        startOffsetPercentage = .1f;
+    }
+    
+    if (startOffsetPercentage > .9f) {
+        startOffsetPercentage = .9f;
+    }
+    
+    _startOffsetPercentage = startOffsetPercentage;
+}
 
 - (void)setTintColor:(UIColor *)tintColor {
     if (!tintColor) {
