@@ -86,6 +86,21 @@ We'll publish it to the CocoaPods repo once we feel it's stable enough for produ
     <td><code>CGFloat</code></td>
     <td>Set or get the alpha modifier used for the blurring. Default is <code>.85f</code>.</td>
   </tr>
+  <tr>
+    <td>animationDuration</td>
+    <td><code>CGFloat</code></td>
+    <td>Duration of the animation in seconds (<i>per</i> animation, there's a total of 2).</td>
+  </tr>
+  <tr>
+    <td>animationDelay</td>
+    <td><code>CGFloat</code></td>
+    <td>Delay, in number of seconds, between the two animations.</td>
+  </tr>
+  <tr>
+    <td>startOffsetPercentage</td>
+    <td><code>CGFloat</code></td>
+    <td>The start offset/inset of the first button, in percents. (1 = 100%, 0.5 = 50%, 0 = 0%).</td>
+  </tr>
 </table>
 
 ## Credits
