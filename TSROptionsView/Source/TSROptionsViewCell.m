@@ -74,6 +74,11 @@ static CGFloat TSROptionsViewCellImageSpacing = 10.f;
     return self;
 }
 
+- (void)prepareForReuse {
+    [super prepareForReuse];
+    self.accessoryType = UITableViewCellAccessoryNone;
+}
+
 - (void)layoutSubviews {
     [super layoutSubviews];
     
