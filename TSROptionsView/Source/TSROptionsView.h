@@ -19,7 +19,8 @@
 
 - (void)addOptionWithTitle:(NSString *)title;
 - (void)addOptionWithTitle:(NSString *)title icon:(UIImage *)icon;
-- (void)addOptionWithTitle:(NSString *)title icon:(UIImage *)icon selected:(BOOL)selected;
+- (void)addOptionWithTitle:(NSString *)title icon:(UIImage *)icon disclosureIndicator:(BOOL)disclosureIndicator;
+- (void)addOptionWithTitle:(NSString *)title icon:(UIImage *)icon disclosureIndicator:(BOOL)disclosureIndicator selected:(BOOL)selected;
 
 - (NSString *)titleForButtonWithIndex:(NSInteger)index;
 
