@@ -18,6 +18,7 @@
 @property(nonatomic, strong) NSString *title;
 @property(nonatomic, strong) UIImage *icon;
 @property(nonatomic, assign) BOOL selected;
+@property(nonatomic, assign) BOOL disclosureIndicator;
 @end
 
 @implementation TSROptionsViewOption
@@ -291,6 +292,10 @@
             cell.textLabel.font  = self.choicesFont;
             cell.showsSeparator  = YES;
             
+            if (option.disclosureIndicator) {
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            }
+            
             if (option.selected) {
                 cell.tintColor     = self.checkmarkColor;
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -370,19 +375,24 @@
 #pragma mark - Public methods
 
 - (void)addOptionWithTitle:(NSString *)title {
-    [self addOptionWithTitle:title icon:nil selected:NO];
+    [self addOptionWithTitle:title icon:nil disclosureIndicator:NO selected:NO];
 }
 
 - (void)addOptionWithTitle:(NSString *)title icon:(UIImage *)icon {
-    [self addOptionWithTitle:title icon:icon selected:NO];
+    [self addOptionWithTitle:title icon:icon disclosureIndicator:NO selected:NO];
 }
 
-- (void)addOptionWithTitle:(NSString *)title icon:(UIImage *)icon selected:(BOOL)selected {
+- (void)addOptionWithTitle:(NSString *)title icon:(UIImage *)icon disclosureIndicator:(BOOL)disclosureIndicator {
+    [self addOptionWithTitle:title icon:icon disclosureIndicator:disclosureIndicator selected:NO];
+}
+
+- (void)addOptionWithTitle:(NSString *)title icon:(UIImage *)icon disclosureIndicator:(BOOL)disclosureIndicator selected:(BOOL)selected {
     TSROptionsViewOption* option = [TSROptionsViewOption new];
     
-    option.title    = title;
-    option.icon     = icon;
-    option.selected = selected;
+    option.title               = title;
+    option.icon                = icon;
+    option.selected            = selected;
+    option.disclosureIndicator = disclosureIndicator;
     
     [self.options addObject:option];
     
