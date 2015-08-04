@@ -46,6 +46,13 @@
 @implementation TSROptionsView
 @synthesize snapshotImage = _snapshotImage, textColor = _textColor;
 
++ (TSROptionsView *)withTitle:(NSString *)title delegate:(id<TSROptionsViewDelegate>)delegate {
+    TSROptionsView *result = [[TSROptionsView alloc] init];
+    result.title = title;
+    result.delegate = delegate;
+    return result;
+}
+
 + (TSROptionsView *)withTitle:(NSString *)title delegate:(id<TSROptionsViewDelegate>)delegate cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSString *)otherButtonTitles, ... {
     TSROptionsView *result = [[TSROptionsView alloc] init];
     
