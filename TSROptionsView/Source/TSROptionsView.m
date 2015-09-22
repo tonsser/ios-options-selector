@@ -9,6 +9,7 @@
 #import "TSROptionsView.h"
 #import "UIImage+ImageEffects.h"
 #import "TSROptionsViewCell.h"
+#import "TSRPresentationManager.h"
 
 @interface UIViewController (Properties)
 @property (nonatomic, readwrite) TSROptionsView *presentingOptionsView;
@@ -31,20 +32,16 @@
 
 @property(nonatomic, strong) NSMutableArray *options;
 
-@property(nonatomic, strong) UIViewController *openerViewController;
-@property(nonatomic, strong) UIImage *snapshotImage;
-
 @property(nonatomic, strong) UIView *contentView;
 @property(nonatomic, strong) UITableView *tableView;
 @property(nonatomic, strong) UIButton *cancelButton;
-@property(nonatomic, strong) CAGradientLayer *gradientTop, *gradientBottom;
-@property(nonatomic, strong) UIImageView *snapshotImageView, *blurredImageView;
 
 @property(nonatomic, strong) UIColor *textColorFromTint;
+@property(nonatomic, strong) TSRPresentationManager *presentationManager;
 @end
 
 @implementation TSROptionsView
-@synthesize snapshotImage = _snapshotImage, textColor = _textColor;
+@synthesize textColor = _textColor;
 
 + (TSROptionsView *)withTitle:(NSString *)title delegate:(id<TSROptionsViewDelegate>)delegate {
     TSROptionsView *result = [[TSROptionsView alloc] init];
@@ -98,6 +95,10 @@
     if (self.didConfigure) {
         return;
     }
+    self.presentationManager = [[TSRPresentationManager alloc] init];
+
+    self.modalPresentationStyle = UIModalPresentationCustom;
+    self.transitioningDelegate = self.presentationManager;
     
     self.didConfigure = YES;
     self.isVisible    = NO;
@@ -106,12 +107,6 @@
     self.animationDelay    = .1f;
     
     self.startOffsetPercentage = .5f;
-    
-    self.gradientTop = [CAGradientLayer layer];
-    self.gradientTop.locations = @[[NSNumber numberWithFloat:.3f], [NSNumber numberWithFloat:1.f]];
-    
-    self.gradientBottom = [CAGradientLayer layer];
-    self.gradientBottom.locations = @[@(0.0f), @(1.0f)];
     
     self.options           = [NSMutableArray new];
     self.cancelButtonTitle = nil;
@@ -125,13 +120,7 @@
     
     self.tableView.showsHorizontalScrollIndicator = NO;
     self.tableView.showsVerticalScrollIndicator   = NO;
-    
-    self.snapshotImageView = [[UIImageView alloc] init];
-    self.snapshotImageView.backgroundColor = [UIColor clearColor];
-    
-    self.blurredImageView  = [[UIImageView alloc] init];
-    self.blurredImageView.backgroundColor = [UIColor clearColor];
-    
+        
     self.contentView = [[UIView alloc] init];
     self.contentView.backgroundColor = [UIColor clearColor];
     
@@ -174,17 +163,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self.view addSubview:self.snapshotImageView];
-    [self.view addSubview:self.blurredImageView];
-    
+
     [self.contentView addSubview:self.tableView];
-    
     [self.view addSubview:self.contentView];
     [self.view addSubview:self.cancelButton];
-    
-    [self.view.layer addSublayer:self.gradientTop];
-    [self.view.layer addSublayer:self.gradientBottom];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -200,6 +182,10 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(willPresentOptionsView:)]) {
         [self.delegate willPresentOptionsView:self];
     }
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        self.contentView.frame = self.view.frame;
+    }];
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
 }
@@ -227,16 +213,11 @@
     
     CGFloat width = CGRectGetWidth(self.view.bounds), height = CGRectGetHeight(self.view.bounds);
     
-    self.snapshotImageView.frame = self.view.bounds;
-    self.blurredImageView.frame  = self.view.bounds;
     self.tableView.frame         = self.view.bounds;
-    
+
     self.cancelButton.frame = CGRectMake(0, height - 50.f, width, 50.f);
     
     self.tableView.contentInset  = UIEdgeInsetsMake(height * self.startOffsetPercentage, 0, ((self.cancelButton.hidden) ? 50.f : 100.f), 0);
-    
-    self.gradientTop.frame       = CGRectMake(0, 0, width, 50.f);
-    self.gradientBottom.frame    = CGRectMake(0, height - ((self.cancelButton.hidden) ? 50.f : 100.f), width, 50.f);
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
@@ -249,8 +230,7 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(optionsView:willDismissWithButtonIndex:)]) {
         [self.delegate optionsView:self willDismissWithButtonIndex:self.buttonIndexPressed];
     }
-    
-    [self.openerViewController dismissOptionsView];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Methods
@@ -357,8 +337,7 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(optionsView:willDismissWithButtonIndex:)]) {
         [self.delegate optionsView:self willDismissWithButtonIndex:self.buttonIndexPressed];
     }
-    
-    [self.openerViewController dismissOptionsView];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -375,8 +354,6 @@
             alpha = 1.f;
         }
     }
-    
-    self.blurredImageView.alpha = alpha;
 }
 
 #pragma mark - Public methods
@@ -458,15 +435,7 @@
     
     self.view.backgroundColor = self.tintColor;
     
-    CGColorRef tintColorOne = self.view.backgroundColor.CGColor;
-    CGColorRef tintColorTwo = [self.view.backgroundColor colorWithAlphaComponent:0.f].CGColor;
-    
-    self.gradientTop.colors    = @[(__bridge id)tintColorOne, (__bridge id)tintColorTwo];
-    self.gradientBottom.colors = @[(__bridge id)tintColorTwo, (__bridge id)tintColorOne];
-    
-    self.snapshotImage = self.snapshotImage; // Regenerate the blurred image
-    
-    self.cancelButton.backgroundColor = self.view.backgroundColor;
+    self.cancelButton.backgroundColor = [UIColor clearColor];
     [self.cancelButton setTitleColor:self.textColor forState:UIControlStateNormal];
     
     if (self.isVisible) {
@@ -514,30 +483,6 @@
     [self.cancelButton setTitle:cancelButtonTitle forState:UIControlStateNormal];
     
     [self reloadData];
-}
-
-- (UIImage *)snapshotImage {
-    return _snapshotImage;
-}
-
-- (void)setSnapshotImage:(UIImage *)snapshotImage {
-    _snapshotImage = snapshotImage;
-    
-    self.snapshotImageView.image = snapshotImage;
-    
-    if (self.snapshotImageView.image) {
-        UIColor *tintColor = [self.tintColor colorWithAlphaComponent:self.tintColorAlphaModifier];
-        
-        self.blurredImageView.image = [snapshotImage applyBlurWithRadius:30.f
-                                                               tintColor:tintColor
-                                                   saturationDeltaFactor:1.8f
-                                                               maskImage:nil];
-        
-        self.snapshotImageView.image = [snapshotImage applyBlurWithRadius:0.f
-                                                                tintColor:tintColor
-                                                    saturationDeltaFactor:1.8f
-                                                                maskImage:nil];
-    }
 }
 
 - (UIColor *)checkmarkColor {

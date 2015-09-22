@@ -22,7 +22,7 @@
 }
 
 - (IBAction)sliderValueChanged:(id)sender {
-    self.previewView.backgroundColor = [UIColor colorWithRed:self.redSlider.value green:self.greenSlider.value blue:self.blueSlider.value alpha:1.f];
+    self.previewView.backgroundColor = [UIColor colorWithRed:self.redSlider.value / 255.f green:self.greenSlider.value / 255.f blue:self.blueSlider.value / 255.f alpha:1.f];
 }
 
 - (IBAction)previewPressed:(id)sender {
@@ -33,9 +33,8 @@
     optionsView.animationDelay        = .15f;
     optionsView.startOffsetPercentage = 0.f;
     
-    [optionsView addOptionWithTitle:@"Pre-selected item a a a a a a a a a a a a a" icon:nil selected:YES];
-    
-    [self presentOptionsView:optionsView];
+    [optionsView addOptionWithTitle:@"test" icon:nil disclosureIndicator:nil selected:YES];
+    [self presentViewController:optionsView animated:YES completion:nil];
 }
 
 #pragma mark - TSROptionsViewDelegate

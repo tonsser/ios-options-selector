@@ -7,9 +7,6 @@
 //
 
 @import UIKit;
-
-#import "UIViewController+TSROptionsView.h"
-
 @protocol TSROptionsViewDelegate;
 
 @interface TSROptionsView : UIViewController
