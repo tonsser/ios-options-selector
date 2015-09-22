@@ -183,10 +183,6 @@
         [self.delegate willPresentOptionsView:self];
     }
     
-    [UIView animateWithDuration:0.3 animations:^{
-        self.contentView.frame = self.view.frame;
-    }];
-    
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
 }
 
@@ -213,7 +209,7 @@
     
     CGFloat width = CGRectGetWidth(self.view.bounds), height = CGRectGetHeight(self.view.bounds);
     
-    self.tableView.frame         = self.view.bounds;
+    self.tableView.frame = self.contentView.frame = self.view.bounds;
 
     self.cancelButton.frame = CGRectMake(0, height - 50.f, width, 50.f);
     
@@ -433,7 +429,8 @@
     
     _tintColor = tintColor;
     
-    self.view.backgroundColor = self.tintColor;
+//    self.view.backgroundColor = self.tintColor;
+    self.contentView.backgroundColor = [self.tintColor colorWithAlphaComponent:0.8];
     
     self.cancelButton.backgroundColor = [UIColor clearColor];
     [self.cancelButton setTitleColor:self.textColor forState:UIControlStateNormal];
