@@ -10,6 +10,7 @@
 
 @interface TSROptionViewPresentationController()
 @property(nonatomic, strong) UIView *dimmingView;
+@property(nonatomic, strong) UIVisualEffectView *blurEffectView;
 @end
 
 @implementation TSROptionViewPresentationController
@@ -26,9 +27,8 @@
 
 - (void) setupDimmingView {
     self.dimmingView = [[UIView alloc] initWithFrame:self.presentingViewController.view.bounds];
-    UIVisualEffectView *blurEffectView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleDark]];
-    blurEffectView.frame = self.presentingViewController.view.bounds;
-    [self.dimmingView addSubview:blurEffectView];
+    self.blurEffectView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleDark]];
+    [self.dimmingView addSubview:self.blurEffectView];
 
 }
 
@@ -36,13 +36,15 @@
     
     self.dimmingView.alpha = 0.0;
     self.dimmingView.frame = self.containerView.bounds;
+    self.blurEffectView.frame = self.containerView.bounds;
     [self.containerView addSubview:self.dimmingView];
     
     
     [[self.presentingViewController transitionCoordinator] animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
         self.dimmingView.alpha = 1.0;
     } completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
-        
+        self.dimmingView.frame = self.containerView.bounds;
+        self.blurEffectView.frame = self.containerView.bounds;
     }];
 }
 
