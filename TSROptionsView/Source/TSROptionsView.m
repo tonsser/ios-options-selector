@@ -429,7 +429,7 @@
     
     _tintColor = tintColor;
     
-    self.contentView.backgroundColor = [self.tintColor colorWithAlphaComponent:0.70];
+//    self.contentView.backgroundColor = [self.tintColor colorWithAlphaComponent:0.70];
     
     self.cancelButton.backgroundColor = [UIColor clearColor];
     [self.cancelButton setTitleColor:self.textColor forState:UIControlStateNormal];

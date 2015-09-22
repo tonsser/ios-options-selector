@@ -39,7 +39,6 @@
     self.blurEffectView.frame = self.containerView.bounds;
     [self.containerView addSubview:self.dimmingView];
     
-    
     [[self.presentingViewController transitionCoordinator] animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
         self.dimmingView.alpha = 1.0;
     } completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
