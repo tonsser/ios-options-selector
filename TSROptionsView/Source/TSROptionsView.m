@@ -36,6 +36,8 @@
 @property(nonatomic, strong) UITableView *tableView;
 @property(nonatomic, strong) UIButton *cancelButton;
 
+@property(nonatomic, strong) CAGradientLayer *gradientBottom;
+
 @property(nonatomic, strong) UIColor *textColorFromTint;
 @property(nonatomic, strong) TSRPresentationManager *presentationManager;
 @end
@@ -130,6 +132,9 @@
     
     [self.tableView registerClass:[TSROptionsViewCell class] forCellReuseIdentifier:TSROptionsViewCellIdentifier];
     
+    self.gradientBottom = [CAGradientLayer layer];
+    self.gradientBottom.locations = @[@(0.0f), @(1.0f)];
+    
     self.titleFont = nil;
     self.choicesFont = nil;
     
@@ -167,6 +172,7 @@
     [self.contentView addSubview:self.tableView];
     [self.view addSubview:self.contentView];
     [self.view addSubview:self.cancelButton];
+    [self.view.layer addSublayer:self.gradientBottom];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -214,6 +220,8 @@
     self.cancelButton.frame = CGRectMake(0, height - 50.f, width, 50.f);
     
     self.tableView.contentInset  = UIEdgeInsetsMake(height * self.startOffsetPercentage, 0, ((self.cancelButton.hidden) ? 50.f : 100.f), 0);
+ 
+    self.gradientBottom.frame    = CGRectMake(0, height - ((self.cancelButton.hidden) ? 50.f : 100.f), width, 50.f);
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
@@ -429,9 +437,14 @@
     
     _tintColor = tintColor;
     
-//    self.contentView.backgroundColor = [self.tintColor colorWithAlphaComponent:0.70];
+    self.contentView.backgroundColor = [self.tintColor colorWithAlphaComponent:0.70];
     
-    self.cancelButton.backgroundColor = [UIColor clearColor];
+    CGColorRef tintColorOne = self.contentView.backgroundColor.CGColor;
+    CGColorRef tintColorTwo = [self.contentView.backgroundColor colorWithAlphaComponent:0.f].CGColor;
+    
+    self.gradientBottom.colors = @[(__bridge id)tintColorTwo, (__bridge id)tintColorOne];
+    
+    self.cancelButton.backgroundColor = self.contentView.backgroundColor;
     [self.cancelButton setTitleColor:self.textColor forState:UIControlStateNormal];
     
     if (self.isVisible) {
