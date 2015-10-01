@@ -22,6 +22,7 @@
     [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
         toViewController.view.alpha = 1.0;
     } completion:^(BOOL finished) {
+        
         [transitionContext completeTransition:finished];
     }];
 }

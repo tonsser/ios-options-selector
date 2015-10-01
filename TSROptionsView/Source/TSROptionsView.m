@@ -178,6 +178,8 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    self.tableView.frame = CGRectOffset(self.view.bounds, 0, self.view.bounds.size.height);
+    
     self.isVisible = YES;
     
     [self reloadData];
@@ -198,6 +200,10 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(didPresentOptionsView:)]) {
         [self.delegate didPresentOptionsView:self];
     }
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        self.tableView.frame = self.view.bounds;
+    }];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -215,7 +221,7 @@
     
     CGFloat width = CGRectGetWidth(self.view.bounds), height = CGRectGetHeight(self.view.bounds);
     
-    self.tableView.frame = self.contentView.frame = self.view.bounds;
+    self.contentView.frame = self.view.bounds;
 
     self.cancelButton.frame = CGRectMake(0, height - 50.f, width, 50.f);
     

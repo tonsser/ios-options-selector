@@ -26,14 +26,12 @@
 
 
 - (void) setupDimmingView {
-    self.dimmingView = [[UIView alloc] initWithFrame:self.presentingViewController.view.bounds];
+    self.dimmingView = [[UIView alloc] init];
     self.blurEffectView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleDark]];
     [self.dimmingView addSubview:self.blurEffectView];
-
 }
 
 - (void)presentationTransitionWillBegin {
-    
     self.dimmingView.alpha = 0.0;
     self.dimmingView.frame = self.containerView.bounds;
     self.blurEffectView.frame = self.containerView.bounds;

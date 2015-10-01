@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
 
   # Information
   s.name         =  "TSROptionsView"
-  s.version      =  "0.0.5"
+  s.version      =  "0.0.6"
   s.summary      =  "Options view like the one seen in the Spotify app for iOS."
   s.author       =  { "Nicolai Persson" => "recognize@me.com" }
   s.license      =  "Copyright (c) 2014 Tonsser. All rights reserved."
